@@ -1,0 +1,13 @@
+# Kontrollerar lists.json vid varje ändring. Blir den röd hoppar appen över de trasiga spärrarna
+# (och behåller förra fungerande listfilen om JSON:en inte går att läsa alls).
+name: Kontrollera listan
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/check.py lists.json
